@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">KawanFix</string>
+    <string name="collapse">Selengkapnya</string>
+    <string name="expand">expand</string>
+    <string name="lupassandi">Masukkan alamat e-mail yang terdaftar. Kami akan mengirimkan kode verifikasi untuk mengatur ulang kata sandi Anda.</string>
+    <string name="lupasandi1">Kami telah mengirimkan 6 digit kode ke e-mail **********kas@gmail.com Silakan masukkan kode di sini!</string>
+    <string name="kemana">Mau kemana kamu \nhari ini?</string>
+    <string name="sirandah">Pulau Sirandah adalah sebuah pulau yang termasuk dalam wilayah administrasi Kecamatan Bungus Teluk Kabung, Kota Padang. Sirandah berasal dari bahasa Minang yang berarti rendah. Pulau Sirandah merupakan pulau berbukit dengan pantai berpasir putih yang ditumbuhi beberapa jenis pohon tingkat tinggi seperti kelapa, semak dan bakau.</string>
+
+</resources>
