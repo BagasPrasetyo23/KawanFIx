@@ -427,7 +427,7 @@ class Search_kuliner : AppCompatActivity() {
             R.drawable.esduriangantinanlamo,
             R.drawable.kuliner_jembatansitinurbaya,
             R.drawable.rumah_makanpiaman,
-            R.drawable.lamunombakxxxhdpi,
+            R.drawable.rumah_makan_lamunombak,
         )
 
         for (i in image.indices) {
