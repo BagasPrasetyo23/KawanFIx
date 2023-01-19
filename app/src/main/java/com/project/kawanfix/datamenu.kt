@@ -457,6 +457,17 @@ class datamenu {
             ),
             listOf<data_model.Imageslider>(
                 data_model.Imageslider(
+                    images = R.drawable.pauhpiamanxxxhdpi
+                ),
+                data_model.Imageslider(
+                    images = R.drawable.rumahmakanpauh2
+                ),
+                data_model.Imageslider(
+                    images = R.drawable.rumahmakanpauh3
+                ),
+            ),
+            listOf<data_model.Imageslider>(
+                data_model.Imageslider(
                     images = R.drawable.warungkopinanyo_xxxhdpi
                 ),
                 data_model.Imageslider(
@@ -464,17 +475,6 @@ class datamenu {
                 ),
                 data_model.Imageslider(
                     images = R.drawable.kopinanyo3
-                ),
-            ),
-            listOf<data_model.Imageslider>(
-                data_model.Imageslider(
-                    images = R.drawable.esduriangantinanlamo_xxxhdpi
-                ),
-                data_model.Imageslider(
-                    images = R.drawable.gantinanlamo2
-                ),
-                data_model.Imageslider(
-                    images = R.drawable.gantinanlamo3
                 ),
             )
         )
