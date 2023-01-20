@@ -75,7 +75,6 @@
                         android:layout_height="wrap_content">
 
                         <EditText
-                            android:fontFamily="@font/rubikreguler"
                             android:id="@+id/edtpassword"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -84,6 +83,7 @@
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="16dp"
                             android:background="@color/grey4"
+                            android:fontFamily="@font/rubikreguler"
                             android:hint="Masukkan Password anda..."
                             android:textColorHint="@color/grey1"
                             android:textSize="14sp" />

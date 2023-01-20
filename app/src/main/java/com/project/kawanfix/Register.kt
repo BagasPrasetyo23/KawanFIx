@@ -7,13 +7,7 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.widget.*
-import com.project.kawanfix.Util.RetrofitClient
-import com.project.kawanfix.Util.UserBody
 import kotlinx.android.synthetic.main.activity_register.*
-import okhttp3.ResponseBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class Register : AppCompatActivity(),View.OnClickListener {
     private var mIsShowpass = false
@@ -83,30 +77,4 @@ class Register : AppCompatActivity(),View.OnClickListener {
         }
     }
 
-    private fun signup(name: String, email: String, no_telp: String, password: String, password_confirmation: String) {
-        val retIn = RetrofitClient.RetrofitInstance.getRetrofitInstance().create(RetrofitClient.ApiInterface::class.java)
-        val registerInfo = UserBody(name, email, no_telp, password, password_confirmation)
-
-        retIn.registerUser(registerInfo).enqueue(object :
-            Callback<ResponseBody> {
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Toast.makeText(
-                    this@Register,
-                    t.message,
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                if (response.code() == 201) {
-                    Toast.makeText(this@Register, "Registration success!", Toast.LENGTH_SHORT)
-                        .show()
-
-                }
-                else{
-                    Toast.makeText(this@Register, "Registration failed!", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
-        })
-    }
 }
