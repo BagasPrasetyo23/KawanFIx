@@ -16,9 +16,7 @@ class LupaSandi : AppCompatActivity(),View.OnClickListener {
         val button : Button = findViewById(R.id.button)
         button.setOnClickListener(this)
         val back : ImageButton = findViewById(R.id.back)
-        back.setOnClickListener{
-            finish()
-        }
+        back.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -26,6 +24,10 @@ class LupaSandi : AppCompatActivity(),View.OnClickListener {
            when(v.id){
                R.id.button->{
                    val intent = Intent(this,Verifikasi::class.java)
+                   startActivity(intent)
+               }
+               R.id.back->{
+                   val intent = Intent(this,Signin::class.java)
                    startActivity(intent)
                }
            }

@@ -22,7 +22,9 @@ class UbahSandi : AppCompatActivity(),View.OnClickListener {
         setContentView(R.layout.activity_ubah_sandi)
 
         val back : ImageButton = findViewById(R.id.back)
-        back.setOnClickListener(this)
+        back.setOnClickListener {
+            finish()
+        }
         val button : Button = findViewById(R.id.button)
         button.setOnClickListener(this)
 
@@ -64,10 +66,6 @@ class UbahSandi : AppCompatActivity(),View.OnClickListener {
     override fun onClick(v: View?) {
         if (v !=null){
             when(v.id){
-                R.id.back->{
-                    val intent = Intent(this,LupaSandi::class.java)
-                    startActivity(intent)
-                }
                 R.id.button->{
                     val intent = Intent(this,Signin::class.java)
                     startActivity(intent)
