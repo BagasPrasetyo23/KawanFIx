@@ -5,12 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
+import com.project.kawanfix.Util.RetrofitClient
+import com.project.kawanfix.Util.SignInBody
 import kotlinx.android.synthetic.main.activity_signin.*
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class Signin : AppCompatActivity(),View.OnClickListener {
     private var mIsShowpass = false
@@ -62,5 +66,27 @@ class Signin : AppCompatActivity(),View.OnClickListener {
                 }
             }
         }
+    }
+
+    private fun signin(email: String, password: String){
+        val retIn = RetrofitClient.RetrofitInstance.getRetrofitInstance().create(RetrofitClient.ApiInterface::class.java)
+        val signInInfo = SignInBody(email, password)
+        retIn.signin(signInInfo).enqueue(object : Callback<ResponseBody> {
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                Toast.makeText(
+                    this@Signin,
+                    t.message,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if (response.code() == 200) {
+                    Log.d("Login Berhasil", ResponseBody.toString())
+                } else {
+                    Log.d("Login Gagal", ResponseBody.toString())
+                }
+            }
+        })
     }
 }

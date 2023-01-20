@@ -7,7 +7,13 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.widget.*
+import com.project.kawanfix.Util.RetrofitClient
+import com.project.kawanfix.Util.UserBody
 import kotlinx.android.synthetic.main.activity_register.*
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class Register : AppCompatActivity(),View.OnClickListener {
     private var mIsShowpass = false
@@ -30,18 +36,37 @@ class Register : AppCompatActivity(),View.OnClickListener {
             edtshowpassword(mIsShowpass)
         }
         edtshowpassword(mIsShowpass)
+
+        eye1.setOnClickListener {
+            mIsShowpass = !mIsShowpass
+            edtshowpassword1(mIsShowpass)
+        }
+        edtshowpassword1(mIsShowpass)
     }
     private fun edtshowpassword(isShow: Boolean){
-        val edtpassword: EditText = findViewById(R.id.edtpassword)
+        val password: EditText = findViewById(R.id.password)
         val eye : ImageView = findViewById(R.id.eye)
         if (isShow){
-            edtpassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            password.transformationMethod = HideReturnsTransformationMethod.getInstance()
             eye.setImageResource(R.drawable.ic_eye_off)
         }else{
-            edtpassword.transformationMethod = PasswordTransformationMethod.getInstance()
+            password.transformationMethod = PasswordTransformationMethod.getInstance()
             eye.setImageResource(R.drawable.ic_eye)
         }
-        edtpassword.setSelection(edtpassword.text.toString().length)
+        password.setSelection(password.text.toString().length)
+    }
+
+    private fun edtshowpassword1(isShow: Boolean){
+        val password_confirmation: EditText = findViewById(R.id.password_confirmation)
+        val eye1 : ImageView = findViewById(R.id.eye1)
+        if (isShow){
+            password_confirmation.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            eye1.setImageResource(R.drawable.ic_eye_off)
+        }else{
+            password_confirmation.transformationMethod = PasswordTransformationMethod.getInstance()
+            eye1.setImageResource(R.drawable.ic_eye)
+        }
+        password_confirmation.setSelection(password_confirmation.text.toString().length)
     }
 
     override fun onClick(v: View?) {
@@ -56,5 +81,32 @@ class Register : AppCompatActivity(),View.OnClickListener {
                 }
             }
         }
+    }
+
+    private fun signup(name: String, email: String, no_telp: String, password: String, password_confirmation: String) {
+        val retIn = RetrofitClient.RetrofitInstance.getRetrofitInstance().create(RetrofitClient.ApiInterface::class.java)
+        val registerInfo = UserBody(name, email, no_telp, password, password_confirmation)
+
+        retIn.registerUser(registerInfo).enqueue(object :
+            Callback<ResponseBody> {
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                Toast.makeText(
+                    this@Register,
+                    t.message,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if (response.code() == 201) {
+                    Toast.makeText(this@Register, "Registration success!", Toast.LENGTH_SHORT)
+                        .show()
+
+                }
+                else{
+                    Toast.makeText(this@Register, "Registration failed!", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        })
     }
 }
